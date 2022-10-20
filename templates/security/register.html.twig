@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'register' %}
+{% block title %}{% trans %}Register{% endtrans %}{% endblock %}
+
+{% block body %}
+
+    <h1>{% trans %}Register{% endtrans %}</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'|trans
+        }) }}
+        {{ form_row(registrationForm.agreeTerms,{
+            label: 'Agree terms'|trans
+        }) }}
+
+        <button type="submit" class="btn">{% trans %}Register{% endtrans %}</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

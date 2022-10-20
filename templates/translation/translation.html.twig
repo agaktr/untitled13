@@ -1,0 +1,4 @@
+<div {{ stimulus_controller('locale') }} data-url="{{ path('app_locale') }}" class="">
+    <li><a href="#" {{ stimulus_action('locale','changeLocale') }} data-locale="en">en</a></li>
+    <li class=""><a href="#" {{ stimulus_action('locale','changeLocale') }} data-locale="el">el</a></li>
+</div>

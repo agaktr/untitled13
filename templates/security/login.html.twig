@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'login' %}
+{% block title %}{% trans %}Log in!{% endtrans %}{% endblock %}
+
+{% block body %}
+<form method="post" class="">
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="">
+            {% trans %}You are logged in as{% endtrans %} {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">{% trans %}Logout{% endtrans %}</a>
+        </div>
+    {% endif %}
+
+    <h1 class="">{% trans %}Please sign in{% endtrans %}</h1>
+    <label for="inputEmail">{% trans %}Email{% endtrans %}</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">{% trans %}Password{% endtrans %}</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="_remember_me">{% trans %}Remember me{% endtrans %}
+        </label>
+    </div>
+
+    <button class="" type="submit">
+        {% trans %}Sign in{% endtrans %}
+    </button>
+
+    <a href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}">
+        <span>Login with Google</span>
+    </a>
+</form>
+
+{% endblock %}
